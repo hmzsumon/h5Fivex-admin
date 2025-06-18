@@ -8,38 +8,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaEye } from 'react-icons/fa';
-import ImgNodata from '@/public/images/no-data.gif';
+
 import { useGetAllUsersQuery } from '@/redux/features/admin/adminApi';
-
-export function CustomNoRowsOverlay() {
-	return (
-		<div className='w-full h-full items-center justify-center flex'>
-			<div>
-				<Image src={ImgNodata} alt='No data' width={150} height={150} />
-				<p className='text-sm text-gray-500 text-center'>No data available</p>
-			</div>
-		</div>
-	);
-}
-
-export function CustomLoadingOverlay() {
-	return (
-		<Box
-			sx={{
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				justifyContent: 'center',
-				height: '100%',
-			}}
-		>
-			<CircularProgress />
-			<p style={{ marginTop: 10, fontSize: '0.875rem', color: '#666' }}>
-				Loading Members...
-			</p>
-		</Box>
-	);
-}
+import CustomNoRowsOverlay from '@/components/CustomNoRowsOverlay';
+import CustomLoadingOverlay from '@/components/CustomLoadingOverlay';
 
 const AllUsers = () => {
 	const { data, isLoading, isError, isSuccess, error } =

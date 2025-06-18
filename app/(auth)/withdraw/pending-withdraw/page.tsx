@@ -10,10 +10,8 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Link from 'next/link';
 import { FaEye } from 'react-icons/fa';
 import { Card, Tabs } from 'flowbite-react';
-import {
-	CustomLoadingOverlay,
-	CustomNoRowsOverlay,
-} from '@/components/Trades/LiveTradeUsersTable';
+import CustomNoRowsOverlay from '@/components/CustomNoRowsOverlay';
+import CustomLoadingOverlay from '@/components/CustomLoadingOverlay';
 
 type Withdraw = {
 	id: string;
