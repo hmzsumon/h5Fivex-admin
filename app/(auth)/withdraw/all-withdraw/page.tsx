@@ -15,7 +15,7 @@ import {
 type Withdraw = {
 	id: string;
 	name: string;
-	customer_id: string;
+	customerId: string;
 	amount: number;
 	status: string;
 	date: string;
