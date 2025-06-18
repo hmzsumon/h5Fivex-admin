@@ -21,9 +21,14 @@ const DropdownUser = () => {
 
 	// handle logout
 	const handleLogout = () => {
-		router.push('/');
-		logoutUser(undefined);
-		Cookies.remove('htx-admin-token');
+		logoutUser(undefined)
+			.unwrap()
+			.then(() => {
+				router.push('/'); // Redirect to login page after logout
+			})
+			.catch((err) => {
+				console.error('Logout failed:', err);
+			});
 	};
 
 	// close on click outside
