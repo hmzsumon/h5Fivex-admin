@@ -1,27 +1,17 @@
 'use client';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FaTimes } from 'react-icons/fa';
 import { IoMdNotifications } from 'react-icons/io';
 import socketIOClient from 'socket.io-client';
 import ioBaseUrl from '@/config/ioBaseUrl';
-import { Button, Drawer, Accordion } from 'flowbite-react';
+import { Drawer } from 'flowbite-react';
 
-// import {
-// 	useGetNotificationsQuery,
-// 	useUpdateNotificationMutation,
-// 	useUpdateNotificationStatusMutation,
-// } from '@/redux/features/notify/notificationApi';
-import {
-	useGetNotificationsQuery,
-	useUpdateNotificationMutation,
-} from '@/redux/features/notifications/notificationApi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useLoadUserQuery } from '@/redux/features/auth/authApi';
 import {
 	useGetAdminNotificationsQuery,
-	useUpdateAdminNotificationStatusMutation,
+	useUpdateAdminNotificationMutation,
 } from '@/redux/features/notify/notificationApi';
 import Link from 'next/link';
 
@@ -32,14 +22,14 @@ const Notification = () => {
 		useGetAdminNotificationsQuery(undefined);
 
 	const [
-		updateAdminNotificationStatus,
+		updateAdminNotification,
 		{
 			isLoading: isUpdating,
 			isError: isUpdatingError,
 			isSuccess: isUpdatingSuccess,
 			error: updatingError,
 		},
-	] = useUpdateAdminNotificationStatusMutation();
+	] = useUpdateAdminNotificationMutation();
 
 	const [loadUser, setLadUser] = useState(false);
 
@@ -55,8 +45,7 @@ const Notification = () => {
 	const [openNotificationId, setOpenNotificationId] = useState(null);
 	const [isSoundPlaying, setIsSoundPlaying] = useState<boolean>(false);
 	const [openedNotifications, setOpenedNotifications] = useState<any>([]);
-	// console.log('openedNotifications', openedNotifications);
-	// set count 9+ if count is greater than 9
+
 	const notificationCount = count > 99 ? '99+' : count;
 	useEffect(() => {
 		if (isSuccess) {
@@ -68,7 +57,7 @@ const Notification = () => {
 	const handleUpdateNotification = async () => {
 		// setIsOpen(true);
 		const notificationIds = openedNotifications;
-		updateAdminNotificationStatus({ notificationIds });
+		updateAdminNotification({ notificationIds });
 		console.log('openedNotifications', openedNotifications);
 	};
 
@@ -125,6 +114,7 @@ const Notification = () => {
 			socket.disconnect();
 		};
 	}, []);
+
 	return (
 		<div className='dark'>
 			<div className='relative'>

@@ -10,6 +10,10 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Link from 'next/link';
 import { FaEye } from 'react-icons/fa';
 import { Card, Tabs } from 'flowbite-react';
+import {
+	CustomLoadingOverlay,
+	CustomNoRowsOverlay,
+} from '@/components/Trades/LiveTradeUsersTable';
 
 type Withdraw = {
 	id: string;
@@ -216,8 +220,16 @@ const PendingWithdraw = () => {
 					</div>
 				</Card>
 
-				<div className='w-full h-[500px] bg-white rounded-lg shadow-md'>
-					<DataGrid rows={rows} columns={columns} />
+				<div className='h-[calc(100vh-200px)]'>
+					<DataGrid
+						rows={rows}
+						columns={columns}
+						loading={isLoading}
+						slots={{
+							noRowsOverlay: CustomNoRowsOverlay,
+							loadingOverlay: CustomLoadingOverlay,
+						}}
+					/>
 				</div>
 			</div>
 		</div>

@@ -31,7 +31,7 @@ export const depositApi = apiSlice.injectEndpoints({
 
 		// get admin deposits
 		getAdminDeposits: builder.query<any, any>({
-			query: () => '/admin/deposits',
+			query: () => 'admin/all-deposits',
 			providesTags: ['Deposits'],
 		}),
 

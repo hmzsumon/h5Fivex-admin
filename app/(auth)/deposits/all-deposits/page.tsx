@@ -1,5 +1,4 @@
 'use client';
-
 import { formatDate, formDateWithTime } from '@/lib/functions';
 import { useGetAllWithdrawRequestsQuery } from '@/redux/features/withdraw/withdrawApi';
 import React, { useState } from 'react';
@@ -8,6 +7,10 @@ import Link from 'next/link';
 import { FaEye } from 'react-icons/fa';
 import { Card, Tabs } from 'flowbite-react';
 import { useGetAdminDepositsQuery } from '@/redux/features/deposit/depositApi';
+import {
+	CustomLoadingOverlay,
+	CustomNoRowsOverlay,
+} from '@/components/Trades/LiveTradeUsersTable';
 
 type Deposit = {
 	id: string;
@@ -189,7 +192,7 @@ const AllDeposit = () => {
 				id: deposit._id,
 				sl_no: rows.length + 1,
 				name: deposit.name,
-				customer_id: deposit.customer_id,
+				customer_id: deposit.customerId,
 				amount: deposit.amount,
 				netAmount: deposit.net_amount,
 				status: deposit.status,
@@ -216,7 +219,17 @@ const AllDeposit = () => {
 					</div>
 				</Card>
 
-				<DataGrid rows={rows} columns={columns} />
+				<div className='h-[calc(100vh-200px)]'>
+					<DataGrid
+						rows={rows}
+						columns={columns}
+						loading={isLoading}
+						slots={{
+							noRowsOverlay: CustomNoRowsOverlay,
+							loadingOverlay: CustomLoadingOverlay,
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	);

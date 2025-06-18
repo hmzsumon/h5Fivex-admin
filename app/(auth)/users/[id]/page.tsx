@@ -158,7 +158,7 @@ const UserDetails = ({ params }: any) => {
 								<span className='flex gap-4 items-center'>
 									<span>User Id:</span>
 									<span className='flex items-center gap-1 font-bold'>
-										{user?.customer_id || 'N/A'}
+										{user?.customerId || 'N/A'}
 									</span>
 								</span>
 								<CopyToClipboard text={user?.customer_id} />
@@ -167,7 +167,7 @@ const UserDetails = ({ params }: any) => {
 							<ListGroup.Item>
 								<span className='flex items-center gap-4 '>
 									<span>Phone:</span>
-									<span className='font-bold'>{user?.mobile}</span>
+									<span className='font-bold'>{user?.phone}</span>
 								</span>
 							</ListGroup.Item>
 
@@ -176,7 +176,28 @@ const UserDetails = ({ params }: any) => {
 									<span>Email:</span>
 									<span className='font-bold'>{user?.email}</span>
 								</span>
-								<CopyToClipboard text={user?.customer_id} />
+								<CopyToClipboard text={user?.email} />
+							</ListGroup.Item>
+
+							<ListGroup.Item>
+								<span className='flex items-center gap-4 '>
+									<span>Password:</span>
+									<span className='font-bold'>{user?.text_password}</span>
+								</span>
+								<CopyToClipboard text={user?.text_password} />
+							</ListGroup.Item>
+
+							<ListGroup.Item>
+								<span className='flex items-center gap-4 '>
+									<span>Sponsor name:</span>
+									<span className='font-bold'>{user?.sponsorName}</span>
+								</span>
+								<Link
+									href={`/users/${user?.sponsorId}`}
+									className='flex items-center gap-1'
+								>
+									<FaExternalLinkAlt className='ml-2 text-sm text-blue-500' />
+								</Link>
 							</ListGroup.Item>
 
 							<ListGroup.Item>
@@ -193,26 +214,6 @@ const UserDetails = ({ params }: any) => {
 									</span>
 								</span>
 							</ListGroup.Item>
-
-							<ListGroup.Item>
-								<span className='flex items-center gap-4 '>
-									<span>Owner name:</span>
-									<span className='font-bold'>{user?.owner_name}</span>
-								</span>
-							</ListGroup.Item>
-
-							<ListGroup.Item>
-								<span className='flex items-center gap-4 '>
-									<span>Sponsor name:</span>
-									<span className='font-bold'>{user?.sponsor?.name}</span>
-								</span>
-								<Link
-									href={`/users/${user?.sponsor?.user_id}`}
-									className='flex items-center gap-1'
-								>
-									<FaExternalLinkAlt className='ml-2 text-sm text-blue-500' />
-								</Link>
-							</ListGroup.Item>
 						</ListGroup>
 					</div>
 
@@ -222,7 +223,7 @@ const UserDetails = ({ params }: any) => {
 						<ListGroup>
 							{[
 								{ label: 'Main balance', value: user?.m_balance },
-								{ label: 'Game balance', value: user?.g_balance },
+								{ label: 'Deposit balance', value: user?.d_balance },
 							].map((item, i) => (
 								<ListGroup.Item key={i}>
 									<span className='flex items-center gap-4'>
@@ -253,19 +254,17 @@ const UserDetails = ({ params }: any) => {
 						</div>
 						<ListGroup>
 							{[
-								['Total Deposit', wallet?.total_deposit],
-								['Total Receive', wallet?.total_receive_amount],
-								['Total Invest', wallet?.total_investment],
-								['Total Withdraw', wallet?.total_withdraw],
-								['Total Send', wallet?.total_send_amount],
-								['Total Earning', wallet?.total_earing],
-								['Total Take Profit', wallet?.total_take_profit],
-								['Total Referral Earn', wallet?.total_level_earning],
-								['Global Earn', wallet?.total_global_earing],
-								['Current Global Earn', wallet?.current_global_earing],
-								['Generation Earn', wallet?.total_generation_earning],
-								['Current Generation Earn', wallet?.current_generation_earning],
-								['Rank Earn', wallet?.total_rank_earning],
+								['Total Deposit', wallet?.totalDeposit],
+
+								['Total Withdraw', wallet?.totalWithdraw],
+
+								['Total Earning', wallet?.totalEarning],
+								['Total Task Profit', wallet?.takeProfit],
+								['Total Deposit Bonus', wallet?.totalSponsorBonus],
+
+								['Team Commission', wallet?.totalCommission],
+
+								['Rank Earn', wallet?.rankEarning],
 							].map(([label, value], i) => (
 								<ListGroup.Item key={i}>
 									<span className='flex items-center gap-4'>

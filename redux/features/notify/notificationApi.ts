@@ -9,7 +9,7 @@ export const notificationApi = apiSlice.injectEndpoints({
 
 		//get admin notifications
 		getAdminNotifications: builder.query({
-			query: () => '/admin/notifications',
+			query: () => '/admin-notifications',
 			providesTags: ['Notification'],
 		}),
 
@@ -40,6 +40,16 @@ export const notificationApi = apiSlice.injectEndpoints({
 			}),
 			invalidatesTags: ['Notification'],
 		}),
+
+		// update multiple admin notifications to read
+		updateAdminNotification: builder.mutation({
+			query: ({ notificationIds }) => ({
+				url: `/update-admin-notification`,
+				method: 'PUT',
+				body: { notificationIds },
+			}),
+			invalidatesTags: ['Notification'],
+		}),
 	}),
 });
 
@@ -49,4 +59,5 @@ export const {
 	useUpdateNotificationMutation,
 	useUpdateNotificationStatusMutation,
 	useUpdateAdminNotificationStatusMutation,
+	useUpdateAdminNotificationMutation,
 } = notificationApi;

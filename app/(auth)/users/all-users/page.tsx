@@ -11,7 +11,7 @@ import { FaEye } from 'react-icons/fa';
 import ImgNodata from '@/public/images/no-data.gif';
 import { useGetAllUsersQuery } from '@/redux/features/admin/adminApi';
 
-function CustomNoRowsOverlay() {
+export function CustomNoRowsOverlay() {
 	return (
 		<div className='w-full h-full items-center justify-center flex'>
 			<div>
@@ -22,7 +22,7 @@ function CustomNoRowsOverlay() {
 	);
 }
 
-function CustomLoadingOverlay() {
+export function CustomLoadingOverlay() {
 	return (
 		<Box
 			sx={{

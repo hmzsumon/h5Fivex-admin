@@ -165,6 +165,14 @@ export const adminApi = apiSlice.injectEndpoints({
 			}),
 			providesTags: ['Users', 'User'],
 		}),
+
+		// admin/reset-daily-tasks
+		adminResetDailyTasks: builder.mutation<any, any>({
+			query: () => ({
+				url: '/admin/reset-daily-tasks',
+				method: 'PUT',
+			}),
+		}),
 	}),
 });
 
@@ -185,4 +193,5 @@ export const {
 	useUpdateLiveTradeProfitRateMutation,
 	useCreateSpinPrizeMutation,
 	useGetAllUsersQuery,
+	useAdminResetDailyTasksMutation,
 } = adminApi;

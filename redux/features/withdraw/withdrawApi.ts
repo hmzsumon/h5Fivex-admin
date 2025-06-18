@@ -20,7 +20,7 @@ export const withdrawApi = apiSlice.injectEndpoints({
 
 		// get all withdraw requests
 		getAllWithdrawRequests: builder.query<any, any>({
-			query: () => `/admin/withdraws`,
+			query: () => `/get-all-withdraws-for-admin`,
 			providesTags: ['Withdraws'],
 		}),
 
