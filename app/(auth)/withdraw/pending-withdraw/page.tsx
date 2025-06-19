@@ -16,7 +16,7 @@ import CustomLoadingOverlay from '@/components/CustomLoadingOverlay';
 type Withdraw = {
 	id: string;
 	name: string;
-	customer_id: string;
+	customerId: string;
 	amount: number;
 	status: string;
 	date: string;
@@ -87,7 +87,7 @@ const PendingWithdraw = () => {
 			width: 150,
 			renderCell: (params: any) => (
 				<div className='flex items-center gap-2 text-xs'>
-					<p>{params.row.method.name}</p>
+					<p>{params.row.method.network}</p>
 				</div>
 			),
 		},
@@ -195,13 +195,13 @@ const PendingWithdraw = () => {
 				id: withdraw._id,
 				sl_no: withdraw.sl_no,
 				name: withdraw.name,
-				customer_id: withdraw.partner_id,
+				customer_id: withdraw.customerId,
 				amount: withdraw.amount,
-				netAmount: withdraw.net_amount,
+				netAmount: withdraw.netAmount,
 				status: withdraw.status,
 				method: withdraw.method,
 				date: formatDate(withdraw.createdAt),
-				user_id: withdraw.user_id,
+				user_id: withdraw.userId,
 			});
 		});
 

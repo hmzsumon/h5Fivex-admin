@@ -28,16 +28,16 @@ const SingleWithdraw = ({ params }: any) => {
 	const { withdraw } = data || {};
 	const {
 		amount,
-		net_amount,
+		netAmount,
 		charge,
-		customer_id,
+		customerId,
 		is_approved,
 		is_rejected,
 		name,
 		phone,
 		status,
 		transactionId,
-		user_id,
+		userId,
 		_id,
 		method,
 	} = withdraw || {};
@@ -133,9 +133,9 @@ const SingleWithdraw = ({ params }: any) => {
 						<span className=' flex gap-4 items-center'>
 							<span>User Id:</span>
 							<span className='flex items-center gap-1 font-bold'>
-								{customer_id}
+								{customerId}
 								<Link
-									href={`/users/${user_id}`}
+									href={`/users/${userId}`}
 									passHref
 									className='text-success ms-2 '
 									style={{ cursor: 'pointer', fontSize: '0.8rem' }}
@@ -177,11 +177,11 @@ const SingleWithdraw = ({ params }: any) => {
 						<span className=' flex items-center gap-4'>
 							<span>Net Amount:</span>
 							<span className='gap-1  text-green-500 font-bold items-center flex '>
-								{Number(net_amount).toLocaleString('en-US', {
+								{Number(netAmount).toLocaleString('en-US', {
 									style: 'currency',
 									currency: 'USD',
 								})}
-								<CopyToClipboard text={net_amount} />
+								<CopyToClipboard text={netAmount} />
 							</span>
 						</span>
 					</ListGroup.Item>

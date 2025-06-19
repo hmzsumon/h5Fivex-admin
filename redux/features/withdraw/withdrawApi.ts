@@ -26,7 +26,7 @@ export const withdrawApi = apiSlice.injectEndpoints({
 
 		// get single withdraw request
 		getSingleWithdrawRequest: builder.query<any, any>({
-			query: (id) => `/admin/withdraw/${id}`,
+			query: (id) => `/get-withdraw-by-id/${id}`,
 			providesTags: ['Withdraws'],
 		}),
 
@@ -43,7 +43,7 @@ export const withdrawApi = apiSlice.injectEndpoints({
 		// reject withdraw request
 		rejectWithdraw: builder.mutation<any, any>({
 			query: (body) => ({
-				url: `/withdraw/reject`,
+				url: `/admin/withdraw/reject`,
 				method: 'PUT',
 				body,
 			}),

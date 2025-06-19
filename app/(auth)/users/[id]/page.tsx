@@ -22,7 +22,7 @@ const UserDetails = ({ params }: any) => {
 	const { id } = params;
 	const { data, isLoading, isError, isSuccess, error } =
 		useGetUserByIdQuery(id);
-	const { user, wallet } = data || {};
+	const { user, wallet, taskReport } = data || {};
 
 	const [
 		blockUser,
@@ -265,6 +265,34 @@ const UserDetails = ({ params }: any) => {
 								['Team Commission', wallet?.totalCommission],
 
 								['Rank Earn', wallet?.rankEarning],
+							].map(([label, value], i) => (
+								<ListGroup.Item key={i}>
+									<span className='flex items-center gap-4'>
+										<span>{label}:</span>
+										<span className='font-bold'>
+											{Number(value).toLocaleString('en-US', {
+												style: 'currency',
+												currency: 'USD',
+											})}
+										</span>
+									</span>
+								</ListGroup.Item>
+							))}
+						</ListGroup>
+					</div>
+
+					{/* Task Info */}
+					<div>
+						<div className='flex items-center gap-2'>
+							<h3 className='font-bold ml-2 my-1'>Task Info</h3>
+						</div>
+						<ListGroup>
+							{[
+								['Total Task count', taskReport?.totalTaskCount],
+								['TodayTask count', taskReport?.todayTaskCount],
+								['Total Task Profit', taskReport?.totalProfit],
+								['Task Value', taskReport?.taskValue],
+								['Today Task Profit', taskReport?.todayProfit],
 							].map(([label, value], i) => (
 								<ListGroup.Item key={i}>
 									<span className='flex items-center gap-4'>
