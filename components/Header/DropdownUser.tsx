@@ -27,7 +27,7 @@ const DropdownUser = () => {
 				router.push('/'); // Redirect to login page after logout
 			})
 			.catch((err) => {
-				console.error('Logout failed The:', err);
+				console.error('Logout failed The user:', err);
 			});
 	};
 
